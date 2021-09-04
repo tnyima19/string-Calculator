@@ -29,10 +29,11 @@ using namespace std;
 int precedence(char signs)
 {
 	if(signs =='*'|| signs =='/')
+		return 3;
+	else if(signs =='-'||signs =='+')
 		return 2;
-	else if(signs =='-'|| signs =='+')
-		return 1;
-
+	//else if(signs =='+')
+	//	return 1;
 	return 0;
 }
 
@@ -54,6 +55,23 @@ int sum_all(int num1, int num2, char ope)
 	return total;
 }
 
+void SolveNegative(string& nums)
+{
+	// this nums must have negative in the beginning.
+	// check before its being sent here. 
+	for(int i=0;i<nums.size();i++)
+	{
+		//if" -36 + 5"
+		// 5-36
+
+		// can i use vectors, i dont think so , althoug we are useing arrays, 
+		// it would be simpler, i would be able to use push_back, to put the string in the back,
+		// but deleting the first array is very tricky.
+
+
+	}
+
+}
 
 
 int calculate(string group1)
@@ -61,6 +79,9 @@ int calculate(string group1)
 	// create two stacks. 
 	stack<int> integers;
 	stack<char> operators;
+
+	if(group1[0] == '-')
+		SolveNegative(group1);
 
 
 
@@ -150,8 +171,8 @@ int main()
 	cout<<"1*2-3/4+5*6-7*8+9/10 ="<<calculate(group6)<<endl;
 
 
-	string group7 =  "3+5 / 2 ";
-	cout<<" 3+5 / 2 ="<<calculate(group7)<<endl;
+	string group7 =  "-15 +3 ";
+	cout<<" -15 +3 ="<<calculate(group7)<<endl;
 	string group8 = "3+2*2";
 	cout<<"3+2*2 ="<<calculate(group8)<<endl;
 
